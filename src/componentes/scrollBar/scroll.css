@@ -1,0 +1,14 @@
+.imagens img{
+    width: 400px;
+    margin-top: 20px;
+}
+.imagens{
+    background-color: #C8B6FFAD;
+    display: flex;
+    padding-bottom: 20px;
+}
+
+#img{
+    margin-left: 165px;
+    width: 400px;
+}

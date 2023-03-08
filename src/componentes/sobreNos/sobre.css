@@ -1,0 +1,47 @@
+.fale{
+    background-color: #C8B6FFAD;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.fale img{
+    margin-left: -480px;
+    margin-top: 20px;
+    width: 350px;
+
+}
+
+.fale button{
+    padding: 10px;
+    position: absolute;
+    margin: 318px 0 0 1420px;
+    background-color: #FFFFFF;
+    border: none;
+    padding-inline: 40px;
+    border-radius: 13px;
+}
+.fale button:hover{
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.20);
+    cursor: pointer;
+}
+
+#titulo{
+    position: relative;
+    margin-top: 100px;
+    font-size: 23px;
+}
+
+#descricao{
+    width: 800px;
+    position: absolute;
+    margin: 160px 0 0 520px;
+    font-size: 20px;
+}
+
+#descricao2{
+    width: 800px;
+    position: absolute;
+    margin: 218px 0 0 520px;
+    font-size: 20px;
+}
