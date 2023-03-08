@@ -1,4 +1,4 @@
-import "./Banner.css";
+import "./banner.css";
 import minhaImagem from '../../img/logo.png'
 
 export const Banner = () => {

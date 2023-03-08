@@ -1,0 +1,13 @@
+footer {
+    background: rgb(255,46,168);
+    background: linear-gradient(90deg, rgba(255,46,168,1) 0%, rgba(255,138,227,1) 35%, rgba(255,229,240,1) 100%);
+}
+
+.footerPage, 
+.footer{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}

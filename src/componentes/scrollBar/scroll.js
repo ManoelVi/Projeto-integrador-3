@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 export default function scroll() {
     return (
-        <div style={{display: 'block', paddingTop: 30}}>
+        <div style={{display: 'block', paddingTop: 30, paddingBottom: 30}}>
             <Carousel>
                 <Carousel.Item>
                     <img src={imagem1} id="img"></img>
