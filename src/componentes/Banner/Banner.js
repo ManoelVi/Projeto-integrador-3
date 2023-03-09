@@ -1,7 +1,7 @@
-import "./banner.css";
+import "./Banner.css";
 import minhaImagem from '../../img/logo.png'
 
-export const Banner = () => {
+export default function Banner () {
   return (
     <header className="banner">
       <div className="lista">
