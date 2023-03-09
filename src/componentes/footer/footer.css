@@ -1,6 +1,6 @@
 footer {
-    background: rgb(255,46,168);
-    background: linear-gradient(90deg, rgba(255,46,168,1) 0%, rgba(255,138,227,1) 35%, rgba(255,229,240,1) 100%);
+    background: rgb(245,156,199);
+    background: linear-gradient(90deg, rgba(245,156,199,1) 0%, rgba(255,207,230,1) 35%, rgba(242,224,230,1) 100%);
 }
 
 .footerPage, 

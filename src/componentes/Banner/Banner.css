@@ -7,17 +7,14 @@
     width: 100%;
 }
 
-.lista h1{
-    color: #C8B6FFAD;
-}
 .lista ul{
     margin-top: 35px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .lista {
-    background: rgb(255,46,168);
-    background: linear-gradient(90deg, rgba(255,46,168,1) 0%, rgba(255,138,227,1) 35%, rgba(255,229,240,1) 100%);
+    background: rgb(245,156,199);
+    background: linear-gradient(90deg, rgba(245,156,199,1) 0%, rgba(255,207,230,1) 35%, rgba(242,224,230,1) 100%);
 }
 
 .elementos{
@@ -49,4 +46,7 @@
     cursor: pointer;
 }
 
-
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
