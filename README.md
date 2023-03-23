@@ -16,3 +16,6 @@
 
 ### Login ADM
 ![image](https://user-images.githubusercontent.com/100283238/227320111-e0a32e7d-bef1-436c-a6e3-b94aef160108.png)
+
+### Pedido
+![image](https://user-images.githubusercontent.com/100283238/227320295-763b40df-b260-4384-964f-b64a50903ec1.png)
