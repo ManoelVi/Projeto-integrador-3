@@ -19,3 +19,13 @@
 
 ### Pedido
 ![image](https://user-images.githubusercontent.com/100283238/227320295-763b40df-b260-4384-964f-b64a50903ec1.png)
+
+
+### Catálogo 
+![image](https://user-images.githubusercontent.com/100283238/227320629-a46d36ca-ee93-4bf5-a8c5-ce5b400d651d.png)
+
+### Solicitações
+![image](https://user-images.githubusercontent.com/100283238/227320847-633a481f-ac07-47f1-bc16-304af4f123bb.png)
+
+### Histórico
+![image](https://user-images.githubusercontent.com/100283238/227320944-10692dc2-2a71-414c-8565-400d59baa95f.png)
