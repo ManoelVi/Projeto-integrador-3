@@ -1,0 +1,86 @@
+.about-us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-color);
+}
+.about-us-image {
+  padding: 80px;
+  border-radius: 22%;
+  height: 500px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 370px;
+}
+.text h1 {
+  color: var(--black-color);
+  line-height: 60px;
+}
+.text p {
+  color: var(--black-color);
+  line-height: 32px;
+}
+.see-my-services {
+  background-color: var(--pink-color);
+  color: var(--black-color);
+  padding: 10px 15px;
+  border-radius: 30px;
+  text-decoration: none;
+}
+.see-my-services:hover {
+  transition: .2s;
+  color: var(--black-color);
+  box-shadow: var(--black-box-shadow);
+}
+.steps {
+  background-color: var(--soft-pink-color);
+  padding: 15px 0;
+}
+.step-images {
+  padding: 30px 50px;
+  display: flex;
+  justify-content: space-between;
+}
+.step-images img {
+  width: 300px;
+  border-radius: 10%;
+}
+.barra hr {
+  height: 8px;
+  width: 85%;
+  background-color: var(--dark-pink-color);
+  border-color: var(--dark-pink-color);
+  margin: 0 auto;
+}
+.bolinhas {
+  margin: -30px auto 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 88%;
+}
+.bolinhas p{
+  z-index: 1;
+  border-radius: 50%;
+  background-color: var(--white-color);
+  color: var(--black-color);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.textos {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  width: 95%;
+  margin: 0 auto;
+ 
+}
+.textos p {
+  height: fit-content;
+  width: 190px;
+}

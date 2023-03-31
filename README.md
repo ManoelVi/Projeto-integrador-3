@@ -7,7 +7,7 @@
 * Raquel Aparecida
 * Endrio Oliveira de Jesus
 * Rael Souza da Paixão
-* Victor Manoel
+* Vitor Manoel
 
 ### MER
 ![image](https://user-images.githubusercontent.com/67610613/227380205-9969125a-bfc5-407b-9587-820986fafec6.png)

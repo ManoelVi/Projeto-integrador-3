@@ -1,0 +1,6 @@
+footer { 
+    background: var(--pink-to-soft-pink-color);
+    padding: 20px;
+}
+.footer { text-align: center; }
+.rights-reserved { margin: 0 !important; }

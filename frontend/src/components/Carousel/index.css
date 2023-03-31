@@ -1,0 +1,13 @@
+.carousel { 
+  background: var(--soft-pink-color); 
+  display: block;
+  padding: 15px 0;
+  height: 475px;
+}
+.carousel-control-next,
+.carousel-control-prev { filter: invert(100%); }
+.carousel-inner-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

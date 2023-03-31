@@ -1,0 +1,9 @@
+:root {
+  --pink-to-soft-pink-color: linear-gradient(90deg, #F59CC7 0%, #FFCFE6 35%, #F2E0E6 100%);
+  --soft-pink-color: #F2E0E6;
+  --pink-color: #E89EC3;
+  --dark-pink-color: #FF0095;
+  --white-color: #FFF;
+  --black-color: #000;
+  --black-box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);
+}

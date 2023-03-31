@@ -1,0 +1,39 @@
+#header {
+  background: var(--pink-to-soft-pink-color);
+  height: fit-content;
+  width: 100%;
+}
+#header-logo { 
+  max-width: 340px; 
+}
+.list { 
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.list ul {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  justify-content: space-around;
+}
+.elementos{
+  color: var(--black-color);
+  font-weight: bold;
+}
+.elementos:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.login{
+  background-color: var(--pink-color);
+  color: var(--black-color);
+  padding: 10px 15px;
+  border-radius: 30px;
+}
+.login:hover{
+  transition: .2s;
+  text-decoration: none;
+  box-shadow: var(--black-box-shadow);
+}
