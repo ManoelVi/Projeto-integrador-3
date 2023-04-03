@@ -1,0 +1,10 @@
+@media screen and (max-width: 768px) {  
+  .about-us {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 80px;
+  }
+  .step-images { height: 50vh; }
+  .step-images img { width: 250px; }
+}

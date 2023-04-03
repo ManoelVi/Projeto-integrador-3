@@ -1,0 +1,24 @@
+@media screen and (max-width: 1024px) {  
+  .steps {
+    display: flex;
+    justify-content: center;
+  }
+  .barra {
+    display: none;
+  }
+  .step-images {
+    flex-direction: column;
+    height: 75vh;
+  }
+  .bolinhas {
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0;
+    width: 10%;
+  }
+  .textos {
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 30%;
+  }
+}

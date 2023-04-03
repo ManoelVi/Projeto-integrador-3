@@ -1,0 +1,5 @@
+@media screen and (max-width: 1024px) {
+  #header-logo { margin: 10px auto; }
+  .list ul { max-width: 100%; }
+  .list li { margin: 20px 0 10px 0; }  
+}

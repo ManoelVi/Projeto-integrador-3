@@ -1,0 +1,21 @@
+@media screen and (max-width: 320px) {  
+  .see-my-services { 
+    width: 70%;
+    margin: 0 auto;
+  }
+  .text { width: 80%; }
+  .about-us { padding-bottom: 50px; }
+  .textos p{
+    width: 100%;
+    text-align: center;
+  }
+  .bolinhas p { 
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+  }
+  .steps-title {
+    width: 90%;
+    margin: 10px auto;
+  }
+}

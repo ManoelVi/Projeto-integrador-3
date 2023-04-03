@@ -35,6 +35,11 @@
   color: var(--black-color);
   box-shadow: var(--black-box-shadow);
 }
+.steps-title {
+  text-align: center;
+  margin: 50px 0 30px 0;
+  font-weight: 200;
+}
 .steps {
   background-color: var(--soft-pink-color);
   padding: 15px 0;

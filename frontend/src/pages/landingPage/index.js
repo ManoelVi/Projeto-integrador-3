@@ -6,9 +6,12 @@ import form from '../../assets/img/form.png';
 import man from '../../assets/img/man.png';
 import creditCard from '../../assets/img/cartao.png';
 import './index.css';
+import './index320px.css';
+import './index425px.css';
+import './index768px.css';
+import './index1024px.css';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer';
-// TODO: Implementar CSS Responsivo nessa página
 
 export default function LandingPage() {
   return (
@@ -25,6 +28,7 @@ export default function LandingPage() {
             <Link to='/meus-servicos' className='see-my-services'>Veja meus serviços</Link>
           </div>
         </div>
+        <h1 className='steps-title'>Veja como é fácil fazer uma compra!</h1>
         <div className='steps'>
           <div className='step-images'>
             <img src={form} alt='' />

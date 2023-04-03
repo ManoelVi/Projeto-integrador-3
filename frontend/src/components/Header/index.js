@@ -1,13 +1,8 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
-
-// TODO: Criar CSS responsivo para as medidas de tela:
-/**
- * 1024px
-*/
-
 import './index.css';
 import './index425px.css';
+import './index1024px.css';
 
 export default function Header() {
   return (

@@ -1,0 +1,13 @@
+@media screen and (max-width: 425px) {  
+  .about-us-image {
+    width: 250px;
+    height: 250px;
+    padding: 30px;
+  }
+  .step-images { display: none; }
+  .bolinhas { 
+    width: 15%;
+    margin-left: -40px;
+  }
+  .textos { margin: 0 20px; }
+}
