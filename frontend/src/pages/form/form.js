@@ -12,27 +12,27 @@ export default function FormReq() {
                     <h1>Pedido</h1>
                     <Form>
                         <Form.Group className="mb-3" >
-                            <Form.Control size="lg" type="Name" placeholder="Name" style={{backgroundColor: '#F2E0E6'}}/>
+                            <Form.Control required size="lg" type="Name" placeholder="Name" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Control size="lg" type="Endereço" placeholder="Endereço" style={{backgroundColor: '#F2E0E6'}}/>
+                            <Form.Control required size="lg" type="Endereço" placeholder="Endereço" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Control size="lg" type="email" placeholder="Email" style={{backgroundColor: '#F2E0E6'}}/>
+                            <Form.Control srequired ize="lg" type="email" placeholder="Email" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Control size="lg" placeholder="Numero de celular" style={{backgroundColor: '#F2E0E6'}}/>
+                            <Form.Control required size="lg" placeholder="Numero de celular" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Control size="lg" placeholder="Cep" style={{backgroundColor: '#F2E0E6'}}/>
+                            <Form.Control required size="lg" placeholder="Cep" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
-                        <Form.Select size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
+                        <Form.Select required={false} size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
                             <option>Serviços</option>
                             <option value="1">Limpeza de pele</option>
                             <option value="2">Maquiagem</option>
                             <option value="3">Aromaterapia</option>
                         </Form.Select>
-                        <Form.Select size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
+                        <Form.Select required={false} size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
                             <option>Produtos</option>
                             <option value="1">Óleo Essencial</option>
                             <option value="2">Protetor Solar</option>
@@ -91,9 +91,9 @@ export default function FormReq() {
                             />
                         </div>
                         <div className="button">
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
                         </div>
                     </Form>
                 </div>
