@@ -2,8 +2,36 @@ import Header from "../../components/Header";
 import './form.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useState } from "react";
 
 export default function FormReq() {
+
+    const [isRequired, setIsRequired] = useState(false);
+    const [requisicao, setRequisicao] = useState({
+        clientName: '',
+        clientStreet: '',
+        clientPhone: '',
+        clientCpf: '',
+        clientCep: '',
+        clientNumber: '',
+        clientDistrict: '',
+        clientComplement: '',
+        clientState: '',
+        status: 1,
+        service: {
+          type: '',
+        },
+        product_oil: {
+            bergamota: false,
+            lavanta: false,
+            limao: false,
+            hortela: false,
+            capim_limao: false,
+            camomila: false,
+            eucalipto: false,
+        },
+    }); 
+
     return (
         <>
             <Header />
@@ -12,32 +40,44 @@ export default function FormReq() {
                     <h1>Pedido</h1>
                     <Form>
                         <Form.Group className="mb-3" >
-                            <Form.Control required size="lg" type="Name" placeholder="Name" style={{ backgroundColor: '#F2E0E6' }} />
+                            <Form.Control required size="lg" placeholder="Name" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Control required size="lg" type="Endereço" placeholder="Endereço" style={{ backgroundColor: '#F2E0E6' }} />
+                            <Form.Control required size="lg" placeholder="Rua" style={{ backgroundColor: '#F2E0E6' }} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Control required size="lg" type="number" placeholder="Número" style={{ backgroundColor: '#F2E0E6' }} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Control required size="lg" placeholder="Distrito" style={{ backgroundColor: '#F2E0E6' }} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Control required size="lg" placeholder="Estado" style={{ backgroundColor: '#F2E0E6' }} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Control  size="lg" placeholder="Complemento" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Control srequired ize="lg" type="email" placeholder="Email" style={{ backgroundColor: '#F2E0E6' }} />
+                            <Form.Control srequired size="lg" type="email" placeholder="Email" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Control required size="lg" placeholder="Numero de celular" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
                         <Form.Group className="mb-3">
+                            <Form.Control required size="lg" placeholder="CPF" style={{ backgroundColor: '#F2E0E6' }} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Control required size="lg" placeholder="Cep" style={{ backgroundColor: '#F2E0E6' }} />
                         </Form.Group>
-                        <Form.Select required={false} size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
+                        <Form.Select required size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
                             <option>Serviços</option>
                             <option value="1">Limpeza de pele</option>
                             <option value="2">Maquiagem</option>
                             <option value="3">Aromaterapia</option>
                         </Form.Select>
-                        <Form.Select required={false} size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
+                        <Form.Select required size="lg" style={{ marginBottom: 15, backgroundColor: '#F2E0E6' }}>
                             <option>Produtos</option>
                             <option value="1">Óleo Essencial</option>
-                            <option value="2">Protetor Solar</option>
-                            <option value="3">Serum Facial</option>
-                            <option value="4">Esfoliante</option>
                         </Form.Select>
                         <div>
                             <Form.Check
