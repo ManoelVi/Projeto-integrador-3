@@ -8,22 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model.Product;
 import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model.Request;
-import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model.Service;
-import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.repository.ProductRepository;
 import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.repository.RequestRepository;
-import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.repository.ServiceRepository;
 
 @RestController
 @RequestMapping("api/")
 public class RequestController {
     @Autowired
     private RequestRepository requestRepository;
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private ServiceRepository serviceRepository;
 
     @PostMapping("request")
     @ResponseStatus(HttpStatus.CREATED)
