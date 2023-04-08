@@ -1,0 +1,29 @@
+.success-modal {
+    max-width: 550px;
+    height: 70vh;
+    background: rgb(255,255,255);
+    background: linear-gradient(150deg, rgba(255,255,255,1) 0%, rgba(242,224,230,1) 15%, rgba(232,158,195,1) 75%, rgba(255,255,255,1) 100%);
+    margin: 50px auto;
+    border-radius: 25px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.success-modal h1 {
+    font-size: 70px;
+    text-align: center;
+}
+.success-modal hr { 
+    color: var(--pink-color); 
+    width: 90%;
+    margin: 20px auto;
+}
+.success-modal p {
+    font-size: 30px;
+    font-weight: 600;
+    width: 60%;
+    margin: 30px auto;
+    line-height: 1.5;
+    text-align: center;
+}

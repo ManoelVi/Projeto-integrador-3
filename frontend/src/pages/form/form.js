@@ -3,11 +3,15 @@ import "./form.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 export default function FormReq() {
   const [servico, setServico] = useState({
     type: "",
   });
+  
+  const [redirect, setRedirect] = useState(false);
 
   const [product, setProduct] = useState({
     bergamota: false,
@@ -51,21 +55,16 @@ export default function FormReq() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requisicao),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to create request");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // handle successful response
-        console.log(data);
-      })
-      .catch((error) => {
-        // handle error
-        console.error(error);
-      });
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to create request");
+      }
+      setRedirect(true);
+      return response.json();
+    }).catch((error) => {
+      // handle error
+      console.error(error);
+    });
   };
 
   const handleInputChangeRequisicao = (event) => {
@@ -99,6 +98,10 @@ export default function FormReq() {
       product: product,
     });
   };
+
+  if (redirect === true) {
+    return <Navigate to="/pedido-finalizado" />;
+  }
 
   return (
     <>
@@ -312,6 +315,7 @@ export default function FormReq() {
           </Form>
         </div>
       </main>
+      <Footer/>
     </>
   );
 }
