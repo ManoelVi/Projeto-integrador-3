@@ -1,10 +1,13 @@
 package lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +28,8 @@ public class Product {
     private boolean capim_limao;
     @Column
     private boolean eucalipto;
+    @OneToMany(mappedBy = "product")
+    private List<Request> requests;
 
     public Product(boolean bergamota, boolean lavanda, boolean limao, boolean hortela, boolean capim_limao,
             boolean eucalipto) {
@@ -35,7 +40,7 @@ public class Product {
         this.capim_limao = capim_limao;
         this.eucalipto = eucalipto;
     }
-    
+
     public long getId() {
         return id;
     }

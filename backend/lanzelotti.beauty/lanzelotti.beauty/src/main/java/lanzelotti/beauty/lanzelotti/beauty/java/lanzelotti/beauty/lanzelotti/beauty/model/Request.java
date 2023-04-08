@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,6 +37,13 @@ public class Request {
     private String clientState;
     @Column
     private int status;
+    @ManyToOne
+    @JoinColumn(name = "service_id", referencedColumnName = "id")
+    private Service service;
+    
+    @ManyToOne
+    @JoinColumn(name = "product_oil_id", referencedColumnName = "id")
+    private Product product;
 
     public Request(String clientName, String clientEmail, String clientCpf, String clientPhone, String clientCep,
             String clientStreet, int clientNumber, String clientDistrict, String clientComplement, String clientState,

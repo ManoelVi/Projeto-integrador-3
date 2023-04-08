@@ -1,10 +1,13 @@
 package lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,6 +18,8 @@ public class Service {
     private long id;
     @Column
     private String type;
+    @OneToMany(mappedBy = "service")
+    private List<Request> requests;
 
     public Service(String type) {
         this.type = type;
