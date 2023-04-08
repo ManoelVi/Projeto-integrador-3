@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `service` (
   `id` INT(10) NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
   PRIMARY KEY(`id`),
+  UNIQUE INDEX `type_unique` (`type`)
 );
 
 CREATE TABLE IF NOT EXISTS `product_oil` (

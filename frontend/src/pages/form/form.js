@@ -5,20 +5,6 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 
 export default function FormReq() {
-  const [requisicao, setRequisicao] = useState({
-    clientName: "",
-    clientStreet: "",
-    clientEmail: "",
-    clientPhone: "",
-    clientCpf: "",
-    clientCep: "",
-    clientNumber: "",
-    clientDistrict: "",
-    clientComplement: "",
-    clientState: "",
-    status: 1,
-  });
-
   const [servico, setServico] = useState({
     type: "",
   });
@@ -33,10 +19,53 @@ export default function FormReq() {
     eucalipto: false,
   });
 
+  const [requisicao, setRequisicao] = useState({
+    clientName: "",
+    clientStreet: "",
+    clientEmail: "",
+    clientPhone: "",
+    clientCpf: "",
+    clientCep: "",
+    clientNumber: "",
+    clientDistrict: "",
+    clientComplement: "",
+    clientState: "",
+    status: 1,
+    product: {
+      bergamota: false,
+      lavanda: false,
+      limao: false,
+      hortela: false,
+      capim_limao: false,
+      camomila: false,
+      eucalipto: false,
+    },
+    service: {
+      type: "",
+    },
+  });
+
   const handleSubmit = (event) => {
-    console.log("requisicao", requisicao);
-    console.log("product", product);
-    console.log("servico", servico);
+    event.preventDefault();
+    fetch("http://localhost:8080/api/request", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requisicao),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to create request");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // handle successful response
+        console.log(data);
+      })
+      .catch((error) => {
+        // handle error
+        console.error(error);
+      });
   };
 
   const handleInputChangeRequisicao = (event) => {
@@ -53,6 +82,10 @@ export default function FormReq() {
       ...servico,
       [name]: value,
     });
+    setRequisicao({
+      ...requisicao,
+      service: value,
+    });
   };
 
   const handleInputChangeProduct = (event) => {
@@ -60,6 +93,10 @@ export default function FormReq() {
     setProduct({
       ...product,
       [name]: event.target.checked,
+    });
+    setRequisicao({
+      ...requisicao,
+      product: product,
     });
   };
 
@@ -250,12 +287,12 @@ export default function FormReq() {
               />
               <Form.Check
                 inline
-                label="Capim-Limao"
+                label="Campim-Limão"
                 name="capim-limao"
                 checked={product.capim_limao}
                 onChange={handleInputChangeProduct}
                 type={"checkbox"}
-                id={"Capim-Limao"}
+                id={"Campim-Limao"}
               />
               <Form.Check
                 inline
