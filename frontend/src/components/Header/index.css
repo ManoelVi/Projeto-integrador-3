@@ -23,7 +23,8 @@
   font-weight: bold;
 }
 .elementos:hover{
-  text-decoration: underline;
+  color: var(--black-color);
+  text-decoration: underline !important;
   cursor: pointer;
 }
 .login{
