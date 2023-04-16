@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 50px 5%;
+  justify-content: space-around;
+  text-align: center;
+  line-height: .9;
+  font-weight: 500;
+}
+.row div {
+  width: 450px;
+}
+.row img {
+  width: 373px;
+  margin-bottom: 15px;
+}
+.blend {
+  background-color: var(--white-color)
+}
+.essence {
+  line-height: .5;
+}
+.essences div { width: 400px; }
+.essences img { width: 353px; }

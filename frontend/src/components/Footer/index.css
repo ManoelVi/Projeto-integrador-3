@@ -1,8 +1,3 @@
-#root{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
 footer { 
     background: var(--pink-to-soft-pink-color);
     padding: 20px;

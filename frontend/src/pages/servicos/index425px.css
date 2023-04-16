@@ -1,0 +1,4 @@
+@media screen and (max-width: 425px) {  
+  .row img { width: 303px; }
+  .essences img { width: 303px; }
+}
