@@ -1,4 +1,5 @@
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import "./index.css";
 
 export default function OrderStatus() {
@@ -12,6 +13,7 @@ export default function OrderStatus() {
             <p>Seu pedido foi enviado! Aguarde para que nossa equipe entre em contato com você.</p>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

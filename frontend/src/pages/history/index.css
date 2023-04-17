@@ -1,0 +1,49 @@
+.links {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 20px auto;
+}
+.links a {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: var(--pink-color);
+  color: var(--white-color);
+  border-radius: 5px;
+}
+.links a:hover {
+  background-color: var(--black-color);
+  color: var(--pink-color);
+}
+.history-cards {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.history-card {
+  width: 23%;
+  min-width: 260px;
+  min-height: 400px;
+  background-color: var(--white-color);
+  padding: 10px 5px;
+  margin: 10px 5px 0 5px;
+}
+.history-card h5 { 
+  text-align: center;
+  margin: 0 0 10px 0;
+}
+.history-card-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding: 2px 0 0 0;
+  border-bottom: 1px solid var(--black-color);
+}
+.history-card-item p {
+  margin: 2px 0;
+  width: 30%;
+  padding-left: 2px;
+}

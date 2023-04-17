@@ -10,6 +10,8 @@ import FormReq from './pages/form/form';
 import OrderStatus from './pages/orderStatus';
 import AdminForm from './pages/adminLogin';
 import Servicos from './pages/servicos';
+import RequestsList from './pages/requests';
+import HistoryList from './pages/history';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +23,8 @@ root.render(
         <Route path='/pedido-finalizado' element={<OrderStatus />} />
         <Route path='/login' element={<AdminForm />} />
         <Route path='/servicos' element={<Servicos />} />
+        <Route path='/admin/requests' element={<RequestsList />} />
+        <Route path='/admin/history' element={<HistoryList />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
