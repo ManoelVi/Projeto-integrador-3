@@ -8,30 +8,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model.Request;
+import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model.Service;
+import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model.Product;
+import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.repository.ProductRepository;
 import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.repository.RequestRepository;
+import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.repository.ServiceRepository;
 
 @RestController
 @RequestMapping("api/")
 public class RequestController {
     @Autowired
     private RequestRepository requestRepository;
+    @Autowired
+    private ServiceRepository serviceRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     @PostMapping("request")
     @ResponseStatus(HttpStatus.CREATED)
     public Request createRequest(@RequestBody Request request){
+        Service service = new Service(request.getService().getType());
+        Product product = new Product(request.getProduct().isBergamota(), request.getProduct().isLavanda(), request.getProduct().isLimao(), request.getProduct().isHortela(), request.getProduct().isCapim_limao(), request.getProduct().isEucalipto());
+        serviceRepository.save(service);
+        productRepository.save(product);
+        request.setService(service);
+        request.setProduct(product);
         return requestRepository.save(request);
     }
-
-    // @PostMapping("product")
-    // @ResponseStatus(HttpStatus.CREATED)
-    // public Product createProduct(@RequestBody Product product){
-    //     return productRepository.save(product);
-    // }
-
-    // @PostMapping("service")
-    // @ResponseStatus(HttpStatus.CREATED)
-    // public Service createService(@RequestBody Service service){
-    //     return serviceRepository.save(service);
-    // }
 }

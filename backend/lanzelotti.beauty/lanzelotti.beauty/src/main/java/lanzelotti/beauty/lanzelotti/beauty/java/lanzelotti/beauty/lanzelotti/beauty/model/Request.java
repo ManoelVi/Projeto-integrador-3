@@ -44,10 +44,11 @@ public class Request {
     @ManyToOne
     @JoinColumn(name = "product_oil_id", referencedColumnName = "id")
     private Product product;
-
-    public Request(String clientName, String clientEmail, String clientCpf, String clientPhone, String clientCep,
-            String clientStreet, int clientNumber, String clientDistrict, String clientComplement, String clientState,
-            int status) {
+    
+    public Request(long id, String clientName, String clientEmail, String clientCpf, String clientPhone,
+            String clientCep, String clientStreet, int clientNumber, String clientDistrict, String clientComplement,
+            String clientState, int status, Service service, Product product) {
+        this.id = id;
         this.clientName = clientName;
         this.clientEmail = clientEmail;
         this.clientCpf = clientCpf;
@@ -59,7 +60,10 @@ public class Request {
         this.clientComplement = clientComplement;
         this.clientState = clientState;
         this.status = status;
+        this.service = service;
+        this.product = product;
     }
+    
     public long getId() {
         return id;
     }
@@ -131,6 +135,18 @@ public class Request {
     }
     public void setStatus(int status) {
         this.status = status;
+    }
+    public Service getService() {
+        return service;
+    }
+    public void setService(Service service) {
+        this.service = service;
+    }
+    public Product getProduct() {
+        return product;
+    }
+    public void setProduct(Product product) {
+        this.product = product;
     }
     
 }
