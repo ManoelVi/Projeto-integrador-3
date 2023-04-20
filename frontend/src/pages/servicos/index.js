@@ -13,27 +13,27 @@ export default function Servicos() {
       <main>
         <div className="row skin-care">
           {skinCareMock.map((item) => (
-            <div>
+            <div key={skinCareMock.indexOf(item)}>
               <img src={item.image} alt={item.name} />
               <p>{item.name}</p>
               <p>{item.description}</p>
             </div>
           ))}
         </div>
-        <div className="row blend">
+        {<div className="row blend">
           {blendMock.map((item) => (
-            <div>
+            <div key={blendMock.indexOf(item)}>
               <img src={item.image} alt={item.name} />
               <p>{item.name}:</p>
               {item.essences.map((essence) => (
-                <p className="essence">- {essence}</p>
+                <p key={item.essences.indexOf(essence)} className="essence">- {essence}</p>
               ))}
             </div>
           ))}
-        </div>
+        </div>}
         <div className="row essences">
           {essencesMock.map((item) => (
-            <div>
+            <div key={essencesMock.indexOf(item)}>
               <img src={item.image} alt={item.name} />
               <p>{item.name}:</p>
               <p>{item.description}</p>

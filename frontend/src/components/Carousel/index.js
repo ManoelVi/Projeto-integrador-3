@@ -8,7 +8,7 @@ export default function CarouselComponent({array}) {
       <div className='carousel'>
           <Carousel>
             {array.map((item) => (
-              <Carousel.Item>
+              <Carousel.Item key={array.indexOf(item)}>
                 <div className='carousel-inner-item'>
                   <img src={item.image} className="carrousel-image" alt={item.name} />
                 </div>
