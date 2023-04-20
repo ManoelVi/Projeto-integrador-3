@@ -22,6 +22,7 @@ root.render(
         <Route path='/requisicao' element={<FormReq />} />
         <Route path='/pedido-finalizado' element={<OrderStatus />} />
         <Route path='/login' element={<AdminForm />} />
+        <Route path='/admin/register' element={<AdminForm />} />
         <Route path='/servicos' element={<Servicos />} />
         <Route path='/admin/requests' element={<RequestsList />} />
         <Route path='/admin/history' element={<HistoryList />} />

@@ -21,19 +21,42 @@ export default function AdminForm() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:8080/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(req),
-    }).then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to create request");
+    if(window.location.pathname.includes('login')){
+      fetch("http://localhost:8080/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req),
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to login as admin");
+        }
+        setRedirect(true);
+        return response.json();
+      }).catch((error) => {
+        console.error(error);
+      });
+    }else{
+      if(req.storeAuth !=='123456'){
+        alert('Senha da loja inválida');
+      }else{
+        fetch("http://localhost:8080/api/admin/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: req.email,
+            password: req.password,
+          }),
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to create admin account");
+          }
+          setRedirect(true);
+          return response.json();
+        }).catch((error) => {
+          console.error(error);
+        });
       }
-      setRedirect(true);
-      return response.json();
-    }).catch((error) => {
-      console.error(error);
-    });
+    }
   };
   if (redirect === true) {
     return <Navigate to="/menu" />;
@@ -44,17 +67,17 @@ export default function AdminForm() {
       <Header/>
       <main>
         <div className="login-form">
-          <h2>Login Administrador(a)</h2>
+          <h2>{window.location.pathname.includes('login') ? 'Login' : 'Cadastro'} Administrador(a)</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Control
                 required
                 size="lg"
-                type="email"
-                name="email"
-                value={req.email}
+                type="text"
+                name="userName"
+                value={req.userName}
                 onChange={handleInputChangeReq}
-                placeholder="Email"
+                placeholder="Nome de usuário"
                 className="login-input"
               />
             </Form.Group>
@@ -70,6 +93,20 @@ export default function AdminForm() {
                 className="login-input"
               />
             </Form.Group>
+            {window.location.pathname.includes('login') ? '' : 
+              <Form.Group className="mb-3">
+                <Form.Control
+                  required
+                  size="lg"
+                  type="password"
+                  name="storeAuth"
+                  value={req.storeAuth}
+                  onChange={handleInputChangeReq}
+                  placeholder="Senha da loja(conferir com o gestor)"
+                  className="login-input"
+                />
+              </Form.Group>
+            }
             <div className="button">
               <Button variant="primary" type="submit">
                 Login
