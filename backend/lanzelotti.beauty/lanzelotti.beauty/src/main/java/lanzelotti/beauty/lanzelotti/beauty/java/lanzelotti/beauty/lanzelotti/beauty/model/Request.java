@@ -62,8 +62,11 @@ public class Request {
         this.status = status;
         this.service = service;
         this.product = product;
-    }
+    } 
     
+    public Request() {
+    }
+
     public long getId() {
         return id;
     }

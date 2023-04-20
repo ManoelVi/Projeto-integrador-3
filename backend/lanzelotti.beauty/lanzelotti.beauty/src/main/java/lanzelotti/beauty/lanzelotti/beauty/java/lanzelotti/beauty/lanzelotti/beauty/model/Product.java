@@ -31,6 +31,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Request> requests;
 
+    public Product() {
+    }
+
     public Product(boolean bergamota, boolean lavanda, boolean limao, boolean hortela, boolean capim_limao,
             boolean eucalipto) {
         this.bergamota = bergamota;

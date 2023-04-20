@@ -21,6 +21,9 @@ public class Service {
     @OneToMany(mappedBy = "service")
     private List<Request> requests;
 
+    public Service() {
+    }
+    
     public Service(String type) {
         this.type = type;
     }
