@@ -1,5 +1,8 @@
 package lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.beauty.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +40,8 @@ public class Request {
     private String clientState;
     @Column
     private int status;
+    @Column
+    private String createdDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
     @ManyToOne
     @JoinColumn(name = "service_id", referencedColumnName = "id")
     private Service service;
@@ -44,6 +49,8 @@ public class Request {
     @ManyToOne
     @JoinColumn(name = "product_oil_id", referencedColumnName = "id")
     private Product product;
+
+
     
     public Request(long id, String clientName, String clientEmail, String clientCpf, String clientPhone,
             String clientCep, String clientStreet, int clientNumber, String clientDistrict, String clientComplement,
@@ -150,6 +157,14 @@ public class Request {
     }
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
     
 }
