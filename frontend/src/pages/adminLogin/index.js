@@ -8,9 +8,10 @@ import "./index.css";
 
 export default function AdminForm() {
   const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState(null);
   const [req, setReq] = useState({
-    email: '',
-    password: '',
+    userName: "",
+    password: "",
   });
   const handleInputChangeReq = (event) => {
     const { name, value } = event.target;
@@ -21,42 +22,21 @@ export default function AdminForm() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(window.location.pathname.includes('login')){
-      fetch("http://localhost:8080/api/admin/login", {
-        method: "POST",
+    fetch(
+      `http://localhost:8080/admin/login?userName=${req.userName}&password=${req.password}`,
+      {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(req),
-      }).then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to login as admin");
-        }
+      }
+    ).then((response) => {
+      if (response.ok) {
         setRedirect(true);
         return response.json();
-      }).catch((error) => {
-        console.error(error);
-      });
-    }else{
-      if(req.storeAuth !=='123456'){
-        alert('Senha da loja inválida');
-      }else{
-        fetch("http://localhost:8080/api/admin/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: req.email,
-            password: req.password,
-          }),
-        }).then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to create admin account");
-          }
-          setRedirect(true);
-          return response.json();
-        }).catch((error) => {
-          console.error(error);
-        });
+      } else {
+        setError("Usuário ou senha incorretos, por favor tente novamente.");
+        throw new Error("Failed to login as admin");
       }
-    }
+    });
   };
   if (redirect === true) {
     return <Navigate to="/menu" />;
@@ -64,10 +44,14 @@ export default function AdminForm() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <main>
         <div className="login-form">
-          <h2>{window.location.pathname.includes('login') ? 'Login' : 'Cadastro'} Administrador(a)</h2>
+          <h2>
+            {window.location.pathname.includes("login") ? "Login" : "Cadastro"}{" "}
+            Administrador(a)
+          </h2>
+          {error && <p className="error-message">{error}</p>}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Control
@@ -93,20 +77,6 @@ export default function AdminForm() {
                 className="login-input"
               />
             </Form.Group>
-            {window.location.pathname.includes('login') ? '' : 
-              <Form.Group className="mb-3">
-                <Form.Control
-                  required
-                  size="lg"
-                  type="password"
-                  name="storeAuth"
-                  value={req.storeAuth}
-                  onChange={handleInputChangeReq}
-                  placeholder="Senha da loja(conferir com o gestor)"
-                  className="login-input"
-                />
-              </Form.Group>
-            }
             <div className="button">
               <Button variant="primary" type="submit">
                 Login
@@ -115,7 +85,7 @@ export default function AdminForm() {
           </Form>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
