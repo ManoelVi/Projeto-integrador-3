@@ -1,38 +1,47 @@
 body {
-    background-color: var(--soft-pink-color);
+  background-color: var(--soft-pink-color);
 }
 
 .form {
-    background-color: var(--white-color);
-    width: 90%;
-    margin: 50px auto;
-    padding-top: 35px;
-    padding-left: 12%;
-    padding-right: 12%;
-    padding-bottom: 45px;
+  background-color: var(--white-color);
+  width: 90%;
+  margin: 50px auto;
+  padding-top: 35px;
+  padding-left: 12%;
+  padding-right: 12%;
+  padding-bottom: 45px;
 }
 
 .form h1 {
-    text-align: center;
-    padding: 30px;
+  text-align: center;
+  padding: 30px;
 }
 
 .button {
-    display: flex;
-    justify-content: center;
-    padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
 }
 
 .button Button {
-    background-color: var(--pink-color);
-    color: var(--black-color);
-    border-radius: 30px;
-    border-color: transparent;
-    width: 150px;
+  background-color: var(--pink-color);
+  color: var(--black-color);
+  border-radius: 30px;
+  border-color: transparent;
+  width: 150px;
 }
 
 .button Button:hover {
-    background-color: var(--pink-color);
-    border-color: transparent;
-    color: var(--black-color);
+  background-color: var(--pink-color);
+  border-color: transparent;
+  color: var(--black-color);
+}
+
+.error-message {
+  background-color: #ff0000;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
 }

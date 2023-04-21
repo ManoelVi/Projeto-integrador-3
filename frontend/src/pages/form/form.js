@@ -10,8 +10,11 @@ export default function FormReq() {
   const [servico, setServico] = useState({
     type: "",
   });
-  
+
   const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState(null);
+  const [errorAtLeastOne, setErrorAtLeastOne] = useState(null);
+  const [isOilSelected, setIsOilSelected] = useState(false);
 
   const [product, setProduct] = useState({
     bergamota: false,
@@ -51,20 +54,42 @@ export default function FormReq() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (isOilSelected && !Object.values(product).some((p) => p)) {
+      setError(
+        "Por favor, selecione pelo menos uma propriedade do óleo essencial."
+      );
+      setErrorAtLeastOne("");
+      return;
+    }
+    debugger;
+    if (
+      (servico.type === "" || servico.type === "Serviços") &&
+      !isOilSelected
+    ) {
+      setErrorAtLeastOne(
+        "Por favor selecione ao menos um serviço, ou um produto."
+      );
+      setError("");
+      return;
+    }
+
     fetch("http://localhost:8080/api/request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requisicao),
-    }).then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to create request");
-      }
-      setRedirect(true);
-      return response.json();
-    }).catch((error) => {
-      // handle error
-      console.error(error);
-    });
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to create request");
+        }
+        setRedirect(true);
+        return response.json();
+      })
+      .catch((error) => {
+        // handle error
+        console.error(error);
+      });
   };
 
   const handleInputChangeRequisicao = (event) => {
@@ -85,6 +110,15 @@ export default function FormReq() {
       ...requisicao,
       service: value,
     });
+  };
+
+  const handleInputChangeProductSelect = (event) => {
+    const { value } = event.target;
+    if (value === "Óleo Essencial") {
+      setIsOilSelected(true);
+    } else {
+      setIsOilSelected(false);
+    }
   };
 
   const handleInputChangeProduct = (event) => {
@@ -221,6 +255,9 @@ export default function FormReq() {
                 style={{ backgroundColor: "#F2E0E6" }}
               />
             </Form.Group>
+            {errorAtLeastOne && (
+              <p className="error-message">{errorAtLeastOne}</p>
+            )}
             <Form.Select
               required
               size="lg"
@@ -237,11 +274,13 @@ export default function FormReq() {
             <Form.Select
               required
               size="lg"
+              onChange={handleInputChangeProductSelect}
               style={{ marginBottom: 15, backgroundColor: "#F2E0E6" }}
             >
               <option>Produtos</option>
               <option value="Óleo Essencial">Óleo Essencial</option>
             </Form.Select>
+            {error && <p className="error-message">{error}</p>}
             <div>
               <Form.Check
                 inline
@@ -315,7 +354,7 @@ export default function FormReq() {
           </Form>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }
