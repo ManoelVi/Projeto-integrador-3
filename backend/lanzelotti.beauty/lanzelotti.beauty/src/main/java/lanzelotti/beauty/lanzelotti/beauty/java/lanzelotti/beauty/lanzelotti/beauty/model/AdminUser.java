@@ -16,12 +16,12 @@ public class AdminUser {
     @Column
     private String userName;
     @Column
-    private int password;
+    private String password;
 
     public AdminUser() {
     }
 
-    public AdminUser(long id, String userName, int password) {
+    public AdminUser(long id, String userName, String password) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -33,10 +33,10 @@ public class AdminUser {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

@@ -13,6 +13,7 @@ import Servicos from "./pages/servicos";
 import RequestsList from "./pages/requests";
 import HistoryList from "./pages/history";
 import AdminFormCadastro from "./pages/form/adminCreateForm";
+import CreatedAdmin from "./pages/form/adminCreateForm/createdAdmin";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,12 +23,12 @@ root.render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/requisicao" element={<FormReq />} />
         <Route path="/pedido-finalizado" element={<OrderStatus />} />
+        <Route path="/admin/created" element={<CreatedAdmin />} />
         <Route path="/login" element={<AdminForm />} />
-        <Route path="/admin/register" element={<AdminForm />} />
+        <Route path="/admin/register" element={<AdminFormCadastro />} />
         <Route path="/servicos" element={<Servicos />} />
         <Route path="/admin/requests" element={<RequestsList />} />
         <Route path="/admin/history" element={<HistoryList />} />
-        <Route path="/cadastro" element={<AdminFormCadastro />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

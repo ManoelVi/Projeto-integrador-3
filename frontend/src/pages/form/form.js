@@ -226,6 +226,7 @@ export default function FormReq() {
               <Form.Control
                 required
                 size="lg"
+                type="number"
                 name="clientPhone"
                 value={requisicao.clientPhone}
                 onChange={handleInputChangeRequisicao}
@@ -237,6 +238,7 @@ export default function FormReq() {
               <Form.Control
                 required
                 size="lg"
+                type="number"
                 name="clientCpf"
                 value={requisicao.clientCpf}
                 onChange={handleInputChangeRequisicao}
@@ -248,6 +250,7 @@ export default function FormReq() {
               <Form.Control
                 required
                 size="lg"
+                type="number"
                 name="clientCep"
                 value={requisicao.clientCep}
                 onChange={handleInputChangeRequisicao}

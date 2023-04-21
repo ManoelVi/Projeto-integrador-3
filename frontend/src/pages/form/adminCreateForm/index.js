@@ -37,7 +37,7 @@ export default function AdminFormCadastro() {
     });
   };
   if (redirect === true) {
-    return <Navigate to="/menu" />;
+    return <Navigate to="/admin/created" />;
   }
 
   return (

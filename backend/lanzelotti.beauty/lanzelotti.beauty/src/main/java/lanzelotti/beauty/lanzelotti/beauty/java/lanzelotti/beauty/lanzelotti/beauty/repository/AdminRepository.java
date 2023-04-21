@@ -7,5 +7,5 @@ import lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.bea
 
 @Repository
 public interface AdminRepository extends JpaRepository<AdminUser, Long>{
-    AdminUser findByUserNameAndPassword(String userName, int password);
+    AdminUser findByUserNameAndPassword(String userName, String password);
 }

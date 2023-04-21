@@ -32,7 +32,7 @@ public class AdminController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<Boolean> login(@RequestParam String userName, @RequestParam int password) {
+    public ResponseEntity<Boolean> login(@RequestParam String userName, @RequestParam String password) {
         AdminUser adminUser = adminRepository.findByUserNameAndPassword(userName, password);
         if (adminUser != null) {
             return ResponseEntity.ok(true);
