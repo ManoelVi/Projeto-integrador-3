@@ -7,6 +7,10 @@ import { useState } from "react";
 import "./index.css";
 
 export default function AdminForm() {
+  const isLogged = localStorage.getItem('isLogged');
+    if(isLogged){
+      window.location.href = '/admin/requests';
+    }
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
   const [req, setReq] = useState({
@@ -22,24 +26,44 @@ export default function AdminForm() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch(
-      `http://localhost:8080/admin/login?userName=${req.userName}&password=${req.password}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    ).then((response) => {
-      if (response.ok) {
-        setRedirect(true);
-        return response.json();
-      } else {
-        setError("Usuário ou senha incorretos, por favor tente novamente.");
-        throw new Error("Failed to login as admin");
-      }
-    });
+    if(window.location.pathname.includes("register")){
+      fetch(
+        `http://localhost:8080/admin/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(req)
+        }
+      ).then((response) => {
+        if (response.ok) {
+          setRedirect(true);
+          return response.json();
+        } else {
+          setError("Usuário não pode ser criado, tente novamente.");
+          throw new Error("Failed to login as admin");
+        }
+      });
+    }else {
+      fetch(
+        `http://localhost:8080/admin/login?userName=${req.userName}&password=${req.password}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      ).then((response) => {
+        if (response.ok) {
+          localStorage.setItem('isLogged', true);
+          setRedirect(true);
+          return response.json();
+        } else {
+          setError("Usuário ou senha incorretos, por favor tente novamente.");
+          throw new Error("Failed to login as admin");
+        }
+      });
+    }
   };
   if (redirect === true) {
-    return <Navigate to="/menu" />;
+    return <Navigate to="/admin/requests" />;
   }
 
   return (
