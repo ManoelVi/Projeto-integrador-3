@@ -399,12 +399,12 @@ export default function FormReq() {
               />
               <Form.Check
                 inline
-                label="Campim-Limão"
-                name="capim-limao"
+                label="Capim-Limão"
+                name="capim_limao"
                 checked={product.capim_limao}
                 onChange={handleInputChangeProduct}
                 type={"checkbox"}
-                id={"Campim-Limao"}
+                id={"Capim-Limao"}
               />
               <Form.Check
                 inline
