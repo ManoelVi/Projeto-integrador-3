@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Footer from "../../components/Footer";
+import axios from "axios";
 
 export default function FormReq() {
   const [servico, setServico] = useState({
@@ -36,7 +37,7 @@ export default function FormReq() {
     clientCpf: "",
     clientCep: "",
     clientNumber: "",
-    clientDistrict: "",
+    clientNeighborhood: "",
     clientComplement: "",
     clientState: "",
     status: 1,
@@ -64,7 +65,6 @@ export default function FormReq() {
       setErrorAtLeastOne("");
       return;
     }
-    debugger;
     if (
       (servico.type === "" || servico.type === "Serviços") &&
       !isOilSelected
@@ -139,6 +139,26 @@ export default function FormReq() {
     return <Navigate to="/pedido-finalizado" />;
   }
 
+  const handleZipCodeBlur = (event) => {
+    const zipCode = event.target.value.replace(/\D/g, "");
+    axios
+      .get(`https://viacep.com.br/ws/${zipCode}/json/`)
+      .then((response) => {
+        if (response.data.erro) {
+          throw new Error("CEP inválido");
+        }
+        setRequisicao({
+          ...requisicao,
+          clientStreet: response.data.logradouro,
+          clientNeighborhood: response.data.bairro,
+          clientState: response.data.uf,
+        });
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
     <>
       <Header />
@@ -201,6 +221,7 @@ export default function FormReq() {
                   name="clientCep"
                   value={requisicao.clientCep}
                   onChange={handleInputChangeRequisicao}
+                  onBlur={handleZipCodeBlur}
                   placeholder="Cep"
                   style={{ backgroundColor: "#F2E0E6" }}
                 />
@@ -209,10 +230,10 @@ export default function FormReq() {
                 <Form.Control
                   required
                   size="lg"
-                  name="clientDistrict"
-                  value={requisicao.clientDistrict}
+                  name="clientNeighborhood"
+                  value={requisicao.clientNeighborhood}
                   onChange={handleInputChangeRequisicao}
-                  placeholder="Distrito"
+                  placeholder="Bairro"
                   style={{ backgroundColor: "#F2E0E6" }}
                 />
               </Form.Group>
@@ -240,30 +261,32 @@ export default function FormReq() {
                 style={{ backgroundColor: "#F2E0E6" }}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                required
-                size="lg"
-                type="number"
-                name="clientPhone"
-                value={requisicao.clientPhone}
-                onChange={handleInputChangeRequisicao}
-                placeholder="Numero de celular"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                required
-                size="lg"
-                type="number"
-                name="clientCpf"
-                value={requisicao.clientCpf}
-                onChange={handleInputChangeRequisicao}
-                placeholder="CPF"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
+            <Row className="mb-3" style={{ padding: 0, width: "101.9%" }}>
+              <Form.Group as={Col} controlId="formGridClientPhone">
+                <Form.Control
+                  required
+                  size="lg"
+                  type="number"
+                  name="clientPhone"
+                  value={requisicao.clientPhone}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="Numero de celular"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="formGridClientCpf">
+                <Form.Control
+                  required
+                  size="lg"
+                  type="number"
+                  name="clientCpf"
+                  value={requisicao.clientCpf}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="CPF"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+            </Row>
             {errorAtLeastOne && (
               <p className="error-message">{errorAtLeastOne}</p>
             )}

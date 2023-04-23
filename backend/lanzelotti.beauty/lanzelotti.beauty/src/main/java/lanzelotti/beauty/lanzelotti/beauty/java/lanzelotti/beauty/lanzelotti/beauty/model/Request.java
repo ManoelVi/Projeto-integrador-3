@@ -33,7 +33,7 @@ public class Request {
     @Column
     private int clientNumber;
     @Column
-    private String clientDistrict;
+    private String clientNeighborhood;
     @Column
     private String clientComplement;
     @Column
@@ -53,7 +53,7 @@ public class Request {
 
     
     public Request(long id, String clientName, String clientEmail, String clientCpf, String clientPhone,
-            String clientCep, String clientStreet, int clientNumber, String clientDistrict, String clientComplement,
+            String clientCep, String clientStreet, int clientNumber, String clientNeighborhood, String clientComplement,
             String clientState, int status, Service service, Product product) {
         this.id = id;
         this.clientName = clientName;
@@ -63,7 +63,7 @@ public class Request {
         this.clientCep = clientCep;
         this.clientStreet = clientStreet;
         this.clientNumber = clientNumber;
-        this.clientDistrict = clientDistrict;
+        this.clientNeighborhood = clientNeighborhood;
         this.clientComplement = clientComplement;
         this.clientState = clientState;
         this.status = status;
@@ -122,11 +122,11 @@ public class Request {
     public void setClientNumber(int clientNumber) {
         this.clientNumber = clientNumber;
     }
-    public String getClientDistrict() {
-        return clientDistrict;
+    public String getClientNeighborhood() {
+        return clientNeighborhood;
     }
-    public void setClientDistrict(String clientDistrict) {
-        this.clientDistrict = clientDistrict;
+    public void setClientNeighborhood(String clientNeighborhood) {
+        this.clientNeighborhood = clientNeighborhood;
     }
     public String getClientComplement() {
         return clientComplement;
