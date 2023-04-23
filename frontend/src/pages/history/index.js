@@ -1,46 +1,45 @@
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import requestsMock from "../../mocks/requestsPageMock";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import "./index.css";
 import { useEffect, useState } from "react";
 
 export default function HistoryList() {
   const formatDate = (date) => {
-    return dayjs(date).format('DD/MM/YYYY');
-  }
+    return dayjs(date).format("DD/MM/YYYY");
+  };
   const [requests, setRequests] = useState([]);
 
-  useEffect(()=>{
-    fetch(`http://localhost:8080/api/getAllRequests`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    ).then(response => {
-      if(response.ok){
-        return response.json();
-      } else {
-        throw new Error("Failed to get requests");
-      }
-    }).then(data => {
-      setRequests(data)
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/getAllRequests`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     })
-  }, [])
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Failed to get requests");
+        }
+      })
+      .then((data) => {
+        setRequests(data);
+      });
+  }, []);
 
   const getHistory = (status = 0) => {
     let requestStatus = [];
     for (const request of requests) {
-      if(request.status === status){
+      if (request.status === status) {
         requestStatus.push(request);
       }
     }
     return requestStatus;
-  }
+  };
   return (
     <>
-      <Header/>
+      <Header />
       <main>
         <div className="history-cards">
           <div className="history-card">
@@ -93,11 +92,12 @@ export default function HistoryList() {
           </div>
         </div>
         <div className="links">
-          <Link to={'/admin/requests'}>Solicitações</Link>
-          <Link to={'/admin/history'}>Histórico</Link>
+          <Link to={"/admin/requests"}>Solicitações</Link>
+          <Link to={"/admin/history"}>Histórico</Link>
+          <Link to={"/admin/register"}>Criar usuários</Link>
         </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
