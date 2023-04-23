@@ -1,7 +1,9 @@
 import Header from "../../components/Header";
 import "./form.css";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Footer from "../../components/Footer";
@@ -155,61 +157,77 @@ export default function FormReq() {
                 style={{ backgroundColor: "#F2E0E6" }}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                required
-                size="lg"
-                name="clientStreet"
-                value={requisicao.clientStreet}
-                onChange={handleInputChangeRequisicao}
-                placeholder="Rua"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                required
-                size="lg"
-                type="number"
-                name="clientNumber"
-                value={requisicao.clientNumber}
-                onChange={handleInputChangeRequisicao}
-                placeholder="Número"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                required
-                size="lg"
-                name="clientDistrict"
-                value={requisicao.clientDistrict}
-                onChange={handleInputChangeRequisicao}
-                placeholder="Distrito"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                required
-                size="lg"
-                name="clientState"
-                value={requisicao.clientState}
-                onChange={handleInputChangeRequisicao}
-                placeholder="Estado"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                size="lg"
-                name="clientComplement"
-                value={requisicao.clientComplement}
-                onChange={handleInputChangeRequisicao}
-                placeholder="Complemento"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
+            <Row className="mb-3" style={{ padding: 0, width: "101.9%" }}>
+              <Form.Group as={Col} controlId="formGridClientStreet">
+                <Form.Control
+                  required
+                  size="lg"
+                  name="clientStreet"
+                  value={requisicao.clientStreet}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="Rua"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="formGridClientNumber">
+                <Form.Control
+                  required
+                  size="lg"
+                  type="number"
+                  name="clientNumber"
+                  value={requisicao.clientNumber}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="Número"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="formGridClientComplement">
+                <Form.Control
+                  size="lg"
+                  name="clientComplement"
+                  value={requisicao.clientComplement}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="Complemento"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+            </Row>
+            <Row className="mb-3" style={{ padding: 0, width: "101.9%" }}>
+              <Form.Group as={Col} controlId="formGridClientStreet">
+                <Form.Control
+                  required
+                  size="lg"
+                  type="number"
+                  name="clientCep"
+                  value={requisicao.clientCep}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="Cep"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="formGridClientNumber">
+                <Form.Control
+                  required
+                  size="lg"
+                  name="clientDistrict"
+                  value={requisicao.clientDistrict}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="Distrito"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+              <Form.Group as={Col} controlId="formGridClientComplement">
+                <Form.Control
+                  required
+                  size="lg"
+                  name="clientState"
+                  value={requisicao.clientState}
+                  onChange={handleInputChangeRequisicao}
+                  placeholder="Estado"
+                  style={{ backgroundColor: "#F2E0E6" }}
+                />
+              </Form.Group>
+            </Row>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Control
                 srequired
@@ -243,18 +261,6 @@ export default function FormReq() {
                 value={requisicao.clientCpf}
                 onChange={handleInputChangeRequisicao}
                 placeholder="CPF"
-                style={{ backgroundColor: "#F2E0E6" }}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Control
-                required
-                size="lg"
-                type="number"
-                name="clientCep"
-                value={requisicao.clientCep}
-                onChange={handleInputChangeRequisicao}
-                placeholder="Cep"
                 style={{ backgroundColor: "#F2E0E6" }}
               />
             </Form.Group>
