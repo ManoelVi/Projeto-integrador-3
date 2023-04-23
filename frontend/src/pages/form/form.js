@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import axios from "axios";
+import cpfCheck from "cpf-check";
 
 export default function FormReq() {
   const [servico, setServico] = useState({
@@ -17,6 +18,7 @@ export default function FormReq() {
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
   const [cepError, setCepError] = useState(null);
+  const [phoneCpfError, setPhoneCpfError] = useState(null);
   const [errorAtLeastOne, setErrorAtLeastOne] = useState(null);
   const [isOilSelected, setIsOilSelected] = useState(false);
 
@@ -95,12 +97,46 @@ export default function FormReq() {
       });
   };
 
+  const isValidCPF = (cpf) => cpfCheck.validate(cpf);
+
+  const isValidPhoneNumber = (phoneNumber) =>
+    phoneNumber.match(/^(\()?\d{2}(\))?(\s)?(\d{4,5}|\d{4})-(\d{4})$/);
+
   const handleInputChangeRequisicao = (event) => {
     const { name, value } = event.target;
-    setRequisicao({
-      ...requisicao,
-      [name]: value,
-    });
+
+    if (name === "clientCpf") {
+      const cpf = value
+        .replace(/\D/g, "")
+        .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+      setRequisicao({
+        ...requisicao,
+        [name]: cpf,
+      });
+      if (!isValidCPF(cpf)) {
+        setPhoneCpfError("CPF inválido");
+      } else {
+        setPhoneCpfError(null);
+      }
+    } else if (name === "clientPhone") {
+      const phoneNumber = value
+        .replace(/\D/g, "")
+        .replace(/(\d{2})(\d{4,5})(\d{4})/, "($1) $2-$3");
+      setRequisicao({
+        ...requisicao,
+        [name]: phoneNumber,
+      });
+      if (!isValidPhoneNumber(phoneNumber)) {
+        setPhoneCpfError("Número de telefone inválido");
+      } else {
+        setPhoneCpfError(null);
+      }
+    } else {
+      setRequisicao({
+        ...requisicao,
+        [name]: value,
+      });
+    }
   };
 
   const handleInputChangeServico = (event) => {
@@ -264,12 +300,12 @@ export default function FormReq() {
                 style={{ backgroundColor: "#F2E0E6" }}
               />
             </Form.Group>
+            {phoneCpfError && <p className="error-message">{phoneCpfError}</p>}
             <Row className="mb-3" style={{ padding: 0, width: "101.9%" }}>
               <Form.Group as={Col} controlId="formGridClientPhone">
                 <Form.Control
                   required
                   size="lg"
-                  type="number"
                   name="clientPhone"
                   value={requisicao.clientPhone}
                   onChange={handleInputChangeRequisicao}
@@ -281,7 +317,6 @@ export default function FormReq() {
                 <Form.Control
                   required
                   size="lg"
-                  type="number"
                   name="clientCpf"
                   value={requisicao.clientCpf}
                   onChange={handleInputChangeRequisicao}
