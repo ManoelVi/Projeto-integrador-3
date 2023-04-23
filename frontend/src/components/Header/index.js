@@ -6,12 +6,12 @@ import './index1024px.css';
 
 export default function Header() {
   // TODO: Implementar o login
-  /* if(window.location.pathname.includes('admin')){
+  if(window.location.pathname.includes('admin')){
     const isLogged = localStorage.getItem('isLogged');
     if(!isLogged){
       window.location.href = '/login';
     }
-  } */
+  }
   return (
     <>
       <header id="header">

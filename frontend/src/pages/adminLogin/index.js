@@ -7,6 +7,10 @@ import { useState } from "react";
 import "./index.css";
 
 export default function AdminForm() {
+  const isLogged = localStorage.getItem('isLogged');
+    if(isLogged){
+      window.location.href = '/admin/requests';
+    }
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
   const [req, setReq] = useState({
@@ -30,6 +34,7 @@ export default function AdminForm() {
       }
     ).then((response) => {
       if (response.ok) {
+        localStorage.setItem('isLogged', true);
         setRedirect(true);
         return response.json();
       } else {
@@ -39,7 +44,7 @@ export default function AdminForm() {
     });
   };
   if (redirect === true) {
-    return <Navigate to="/menu" />;
+    return <Navigate to="/admin/requests" />;
   }
 
   return (

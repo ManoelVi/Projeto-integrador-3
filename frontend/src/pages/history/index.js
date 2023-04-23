@@ -4,19 +4,39 @@ import Header from "../../components/Header";
 import requestsMock from "../../mocks/requestsPageMock";
 import dayjs from 'dayjs';
 import "./index.css";
+import { useEffect, useState } from "react";
 
 export default function HistoryList() {
   const formatDate = (date) => {
     return dayjs(date).format('DD/MM/YYYY');
   }
+  const [requests, setRequests] = useState([]);
+
+  useEffect(()=>{
+    fetch(`http://localhost:8080/api/getAllRequests`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    ).then(response => {
+      if(response.ok){
+        return response.json();
+      } else {
+        throw new Error("Failed to get requests");
+      }
+    }).then(data => {
+      setRequests(data)
+    })
+  }, [])
+
   const getHistory = (status = 0) => {
-    let requests = [];
-    for (const request of requestsMock) {
+    let requestStatus = [];
+    for (const request of requests) {
       if(request.status === status){
-       requests.push(request);
+        requestStatus.push(request);
       }
     }
-    return requests;
+    return requestStatus;
   }
   return (
     <>
@@ -30,7 +50,7 @@ export default function HistoryList() {
                 <div className="history-card-item">
                   <p>{formatDate(request.createdAt)}</p>
                   <p>{request.clientName}</p>
-                  <p>{request.serviceType}</p>
+                  <p>{request.service.type}</p>
                 </div>
               </>
             ))}
@@ -42,7 +62,7 @@ export default function HistoryList() {
                 <div className="history-card-item">
                   <p>{formatDate(request.createdAt)}</p>
                   <p>{request.clientName}</p>
-                  <p>{request.serviceType}</p>
+                  <p>{request.service.type}</p>
                 </div>
               </>
             ))}
@@ -54,7 +74,7 @@ export default function HistoryList() {
                 <div className="history-card-item">
                   <p>{formatDate(request.createdAt)}</p>
                   <p>{request.clientName}</p>
-                  <p>{request.serviceType}</p>
+                  <p>{request.service.type}</p>
                 </div>
               </>
             ))}
@@ -66,7 +86,7 @@ export default function HistoryList() {
                 <div className="history-card-item">
                   <p>{formatDate(request.createdAt)}</p>
                   <p>{request.clientName}</p>
-                  <p>{request.serviceType}</p>
+                  <p>{request.service.type}</p>
                 </div>
               </>
             ))}
