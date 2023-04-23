@@ -16,6 +16,7 @@ export default function FormReq() {
 
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
+  const [cepError, setCepError] = useState(null);
   const [errorAtLeastOne, setErrorAtLeastOne] = useState(null);
   const [isOilSelected, setIsOilSelected] = useState(false);
 
@@ -145,7 +146,7 @@ export default function FormReq() {
       .get(`https://viacep.com.br/ws/${zipCode}/json/`)
       .then((response) => {
         if (response.data.erro) {
-          throw new Error("CEP inválido");
+          throw new Error("Cep Inválido");
         }
         setRequisicao({
           ...requisicao,
@@ -153,9 +154,10 @@ export default function FormReq() {
           clientNeighborhood: response.data.bairro,
           clientState: response.data.uf,
         });
+        setCepError("");
       })
-      .catch((error) => {
-        setError(error.message);
+      .catch(() => {
+        setCepError("CEP inválido");
       });
   };
 
@@ -213,6 +215,7 @@ export default function FormReq() {
               </Form.Group>
             </Row>
             <Row className="mb-3" style={{ padding: 0, width: "101.9%" }}>
+              {cepError && <p className="error-message">{cepError}</p>}
               <Form.Group as={Col} controlId="formGridClientStreet">
                 <Form.Control
                   required
