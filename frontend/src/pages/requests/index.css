@@ -48,3 +48,11 @@
   background-color: var(--black-color);
   color: var(--pink-color);
 }
+.filter {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  gap: 20px;
+}
+.filter input { border-radius: 10px; }
+.filter select { border-radius: 10px; }

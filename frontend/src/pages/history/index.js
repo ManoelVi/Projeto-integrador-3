@@ -45,18 +45,6 @@ export default function HistoryList() {
         <div className="history-cards">
           <div className="history-card">
             <h5>Em aberto</h5>
-            {getHistory(0).map((request) => (
-              <>
-                <div className="history-card-item">
-                  <p>{formatDate(request.createdAt)}</p>
-                  <p>{request.clientName}</p>
-                  <p>{request.service.type}</p>
-                </div>
-              </>
-            ))}
-          </div>
-          <div className="history-card">
-            <h5>Em andamento</h5>
             {getHistory(1).map((request) => (
               <>
                 <div className="history-card-item">
@@ -68,7 +56,7 @@ export default function HistoryList() {
             ))}
           </div>
           <div className="history-card">
-            <h5>Encerrado</h5>
+            <h5>Em andamento</h5>
             {getHistory(2).map((request) => (
               <>
                 <div className="history-card-item">
@@ -80,8 +68,20 @@ export default function HistoryList() {
             ))}
           </div>
           <div className="history-card">
-            <h5>Recusado</h5>
+            <h5>Encerrado</h5>
             {getHistory(3).map((request) => (
+              <>
+                <div className="history-card-item">
+                  <p>{formatDate(request.createdAt)}</p>
+                  <p>{request.clientName}</p>
+                  <p>{request.service.type}</p>
+                </div>
+              </>
+            ))}
+          </div>
+          <div className="history-card">
+            <h5>Recusado</h5>
+            {getHistory(4).map((request) => (
               <>
                 <div className="history-card-item">
                   <p>{formatDate(request.createdAt)}</p>
