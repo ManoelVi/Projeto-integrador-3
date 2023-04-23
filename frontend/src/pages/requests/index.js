@@ -12,6 +12,10 @@ export default function RequestsList() {
   }
   const [requests, setRequests] = useState([]);
 
+  const [status, setStatus] = useState("5");
+  const [name, setName] = useState("");
+  const [date, setDate] = useState(formatDate(new Date()));
+
   useEffect(()=>{
     fetch(`http://localhost:8080/api/getAllRequests`,
       {
@@ -28,8 +32,8 @@ export default function RequestsList() {
       setRequests(data);
     })
   }, [])
-
-  const filterByStatus = (status) => {
+  
+  const filtrar = () => {
     setRequests([]);
     fetch(`http://localhost:8080/api/getAllRequests`,
       {
@@ -43,61 +47,29 @@ export default function RequestsList() {
         throw new Error("Failed to get requests");
       }
     }).then(data => {
-      if(status === "4") {
-        setRequests(data);
-        return;
-      }else{
-        const filteredStatus = data.filter(req => req.status === Number(status));
-        setRequests(filteredStatus);
-      }
-    })
-  }
+      let filteredName = data;
+      let filteredDate = data;
+      let filteredStatus = data;
 
-  const filterByDate = (date) => {
-    setRequests([]);
-    fetch(`http://localhost:8080/api/getAllRequests`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    ).then(response => {
-      if(response.ok){
-        return response.json();
-      } else {
-        throw new Error("Failed to get requests");
-      }
-    }).then(data => {
-      if(date === "") {
-        setRequests(data);
-        return;
-      }else{
-        const filteredDate = data.filter(req => req.createdDate.includes(formatDate(date)));
-        setRequests(filteredDate);
-      }
-    })
-  }
+      if(name.trim() !== "") {
+        filteredName = data.filter(req => req.clientName.toLowerCase().includes(name.toLowerCase()));
+        filteredDate = filteredName;
+        filteredStatus = filteredName;
+      } 
 
-  const filterByName = (name) => {
-    setRequests([]);
-    fetch(`http://localhost:8080/api/getAllRequests`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+      if(date !== formatDate(new Date())) {
+        filteredDate = filteredName.filter(req => req.createdDate.includes(formatDate(date)));
+        filteredName = filteredDate;
+        filteredStatus = filteredDate;
       }
-    ).then(response => {
-      if(response.ok){
-        return response.json();
-      } else {
-        throw new Error("Failed to get requests");
+
+      if(status !== "5") {
+        filteredStatus = filteredDate.filter(req => req.status === Number(status));
+        filteredName = filteredStatus;
+        filteredDate = filteredStatus;
       }
-    }).then(data => {
-      if(name === "") {
-        setRequests(data);
-        return;
-      }else{
-        const filteredName = data.filter(req => req.clientName.toLowerCase().includes(name.toLowerCase()));
-        setRequests(filteredName);
-      }
+      
+      setRequests(filteredStatus);
     })
   }
 
@@ -118,15 +90,16 @@ export default function RequestsList() {
       <Header/>
       <main>
         <div className="filter">
-          <select name="status" id="status" onChange={(e) => filterByStatus(e.target.value)}>
-            <option value="4">Todos</option>
+          <select name="status" id="status" onChange={(e) => setStatus(e.target.value)}>
+            <option value="5">Todos</option>
             <option value="1">Em aberto</option>
             <option value="2">Em andamento</option>
             <option value="3">Encerrado</option>
             <option value="4">Recusado</option>
           </select>
-          <input type="text" name="nome" id="nome" placeholder="Digite o nome do cliente" onChange={() => filterByName(document.getElementById('nome').value)} />
-          <input type="date" name="data" id="data" onChange={() => filterByDate(document.getElementById('data').value)} />
+          <input type="text" name="nome" id="nome" placeholder="Digite o nome do cliente" onChange={() => setName(document.getElementById('nome').value)} />
+          <input type="date" name="data" id="data" onChange={() => setDate(formatDate(document.getElementById('data').value))} />
+          <button type="submit" onClick={() => filtrar()}>Filtrar</button>
         </div>
         <table className="requests-table">
           <thead>

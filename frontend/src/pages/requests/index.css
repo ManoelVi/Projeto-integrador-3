@@ -54,5 +54,17 @@
   display: flex;
   gap: 20px;
 }
-.filter input { border-radius: 10px; }
-.filter select { border-radius: 10px; }
+.filter input { 
+  border-radius: 10px;
+  border-color: transparent;
+}
+.filter select { 
+  border-radius: 10px; 
+  border-color: transparent;
+}
+.filter button { 
+  border-radius: 10px; 
+  background-color: var(--pink-color);
+  color: var(--black-color);
+  border-color: transparent;
+}
