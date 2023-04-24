@@ -63,6 +63,6 @@ public class RequestController {
 
     @GetMapping("/getAllRequests")
     public List<Request> getAllRequests() {
-        return requestRepository.findAll();
+        return requestRepository.findAllByOrderByCreatedDateDesc();
     }
 }
