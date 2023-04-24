@@ -1,3 +1,4 @@
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import Footer from "../../components/Footer";
@@ -5,6 +6,7 @@ import Header from "../../components/Header";
 // import requestsMock from "../../mocks/requestsPageMock";
 import "./index.css";
 import { useEffect, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 
 export default function RequestsList() {
   const formatDate = (date) => {
@@ -15,6 +17,8 @@ export default function RequestsList() {
   const [status, setStatus] = useState("5");
   const [name, setName] = useState("");
   const [date, setDate] = useState(formatDate(new Date()));
+  const [showModal, setShowModal] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/getAllRequests`, {
@@ -91,6 +95,11 @@ export default function RequestsList() {
     }
   };
 
+  const handleRowClick = (request) => {
+    setSelectedRequest(request);
+    setShowModal(true);
+  };
+
   return (
     <>
       <Header />
@@ -135,19 +144,81 @@ export default function RequestsList() {
             <th>Status</th>
           </thead>
           <tbody>
-            {requests.map((request) => (
-              <>
-                <tr>
+            {requests.map((request, index) => (
+              <Fragment key={index}>
+                <tr
+                  onClick={() => handleRowClick(request)}
+                  style={{ cursor: "pointer" }}
+                >
                   <td>{request.createdDate}</td>
                   <td>{request.clientName}</td>
                   <td>{request.clientPhone}</td>
                   <td>{request.service.type}</td>
                   <td>{validateStatus(request.status)}</td>
                 </tr>
-              </>
+              </Fragment>
             ))}
           </tbody>
         </table>
+        {selectedRequest && (
+          <Modal
+            show={showModal}
+            onHide={() => setShowModal(false)}
+            className="custom-modal"
+          >
+            <Modal.Header closeButton className="custom-modal-header">
+              <Modal.Title className="custom-modal-title">
+                Detalhes do Pedido
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="custom-modal-body">
+              <p>Data de criação: {selectedRequest.createdDate}</p>
+              <p>Nome do cliente: {selectedRequest.clientName}</p>
+              <p>Email: {selectedRequest.clientEmail}</p>
+              <p>Telefone: {selectedRequest.clientPhone}</p>
+              <p>
+                Tipo do serviço:{" "}
+                {selectedRequest.service ? selectedRequest.service.type : ""}
+              </p>
+              <p>Status: {validateStatus(selectedRequest.status)}</p>
+              <p>
+                Endereço do cliente: {selectedRequest.clientStreet},{" "}
+                {selectedRequest.clientNumber},{" "}
+                {selectedRequest.clientNeighborhood},{" "}
+                {selectedRequest.clientState}, {selectedRequest.clientCep}
+              </p>
+              {selectedRequest.product.bergamota ||
+              selectedRequest.product.lavanda ||
+              selectedRequest.product.limao ||
+              selectedRequest.product.hortela ||
+              selectedRequest.product.capim_limao ||
+              selectedRequest.product.camomila ||
+              selectedRequest.product.eucalipto ? (
+                <>
+                  <p>Detalhes do produto:</p>
+                  <p className="product-details">
+                    {" "}
+                    óleo esseicial com as propriedades:{" "}
+                    {Object.keys(selectedRequest.product)
+                      .filter(
+                        (key) => key !== "id" && selectedRequest.product[key]
+                      )
+                      .join(", ")}
+                  </p>
+                </>
+              ) : null}
+            </Modal.Body>
+            <Modal.Footer className="custom-modal-footer">
+              <Button
+                variant="secondary"
+                onClick={() => setShowModal(false)}
+                className="custom-modal-button"
+              >
+                Fechar
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
         <div className="links">
           <Link to={"/admin/requests"}>Solicitações</Link>
           <Link to={"/admin/history"}>Histórico</Link>
