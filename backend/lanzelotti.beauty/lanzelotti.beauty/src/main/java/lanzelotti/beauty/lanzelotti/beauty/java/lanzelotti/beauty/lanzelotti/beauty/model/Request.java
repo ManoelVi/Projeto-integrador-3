@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -42,11 +41,7 @@ public class Request {
     @Column
     private int status;
     @Column
-    private String createdDate;
-    @PrePersist
-    protected void onCreate() {
-        createdDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
-    }
+    private String createdDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
     @ManyToOne
     @JoinColumn(name = "service_id", referencedColumnName = "id")
     private Service service;
