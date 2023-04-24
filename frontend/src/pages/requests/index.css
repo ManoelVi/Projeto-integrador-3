@@ -79,7 +79,7 @@
   color: #333;
   font-size: 16px;
   font-weight: bold;
-  border: 2px solid #333;
+  border: transparent;
   border-radius: 5px;
   padding: 10px;
 }
@@ -91,7 +91,7 @@
 #status:focus {
   outline: none;
   border-color: var(--pink-color);
-  box-shadow: 0 0 5px var(--pink-color);
+  box-shadow: 0 0 20px var(--pink-color);
 }
 
 #nome {
@@ -100,7 +100,7 @@
   color: #333;
   font-size: 16px;
   font-weight: bold;
-  border: 2px solid #333;
+  border: transparent;
   border-radius: 5px;
   padding: 10px;
 }
@@ -111,7 +111,7 @@
   color: #333;
   font-size: 16px;
   font-weight: bold;
-  border: 2px solid #333;
+  border: transparent;
   border-radius: 5px;
   padding: 10px;
 }
@@ -123,5 +123,5 @@
 #data:focus {
   outline: none;
   border-color: var(--pink-color);
-  box-shadow: 0 0 5px var(--pink-color);
+  box-shadow: 0 0 20px var(--pink-color);
 }
