@@ -194,6 +194,9 @@ export default function RequestsList() {
                 Tipo do serviço:{" "}
                 {selectedRequest.service ? selectedRequest.service.type : ""}
               </p>
+              <td>
+                Valor: R$ {selectedRequest.cost.toString().replace(".", ",")}
+              </td>
               <p>Status: {validateStatus(selectedRequest.status)}</p>
               <p>
                 Endereço do cliente: {selectedRequest.clientStreet},{" "}
