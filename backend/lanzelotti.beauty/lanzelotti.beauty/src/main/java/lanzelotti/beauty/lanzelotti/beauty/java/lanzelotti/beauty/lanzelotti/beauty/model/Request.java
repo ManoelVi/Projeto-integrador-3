@@ -42,6 +42,8 @@ public class Request {
     private int status;
     @Column
     private String createdDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+    @Column 
+    private int cost;
     @ManyToOne
     @JoinColumn(name = "service_id", referencedColumnName = "id")
     private Service service;
@@ -50,11 +52,9 @@ public class Request {
     @JoinColumn(name = "product_oil_id", referencedColumnName = "id")
     private Product product;
 
-
-    
     public Request(long id, String clientName, String clientEmail, String clientCpf, String clientPhone,
             String clientCep, String clientStreet, int clientNumber, String clientNeighborhood, String clientComplement,
-            String clientState, int status, Service service, Product product) {
+            String clientState, int status, int cost, Service service, Product product) {
         this.id = id;
         this.clientName = clientName;
         this.clientEmail = clientEmail;
@@ -69,6 +69,7 @@ public class Request {
         this.status = status;
         this.service = service;
         this.product = product;
+        this.cost = cost;
     } 
     
     public Request() {
@@ -165,6 +166,14 @@ public class Request {
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
     
 }

@@ -100,6 +100,14 @@ export default function RequestsList() {
     setShowModal(true);
   };
 
+  const getTotalGains = (requests) => {
+    let total = 0;
+    for (let i = 0; i < requests.length; i++) {
+      total += requests[i].cost;
+    }
+    return total;
+  };
+
   return (
     <>
       <Header />
@@ -141,6 +149,7 @@ export default function RequestsList() {
             <th>Nome do cliente</th>
             <th>Telefone</th>
             <th>Tipo do serviço</th>
+            <th>Valor</th>
             <th>Status</th>
           </thead>
           <tbody>
@@ -154,12 +163,17 @@ export default function RequestsList() {
                   <td>{request.clientName}</td>
                   <td>{request.clientPhone}</td>
                   <td>{request.service.type}</td>
+                  <td>R$ {request.cost.toString().replace(".", ",")}</td>
                   <td>{validateStatus(request.status)}</td>
                 </tr>
               </Fragment>
             ))}
           </tbody>
         </table>
+        <div className="gains">
+          <p>Total de ganhos:</p>
+          <p>R$ {getTotalGains(requests).toString().replace(".", ",")}</p>
+        </div>
         {selectedRequest && (
           <Modal
             show={showModal}

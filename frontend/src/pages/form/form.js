@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import axios from "axios";
@@ -44,6 +44,7 @@ export default function FormReq() {
     clientComplement: "",
     clientState: "",
     status: 1,
+    cost: 0,
     product: {
       bergamota: false,
       lavanda: false,
@@ -57,6 +58,47 @@ export default function FormReq() {
       type: "",
     },
   });
+
+  const handleCost = () => {
+    let newCost = 0;
+    if (servico.type === "Maquiagem") {
+      newCost += 100;
+    } else if (servico.type === "Aromaterapia") {
+      newCost += 200;
+    } else if (servico.type === "Limpeza de pele") {
+      newCost += 250;
+    }
+    if (product.bergamota) {
+      newCost += 10;
+    }
+    if (product.lavanda) {
+      newCost += 20;
+    }
+    if (product.limao) {
+      newCost += 30;
+    }
+    if (product.hortela) {
+      newCost += 40;
+    }
+    if (product.capim_limao) {
+      newCost += 50;
+    }
+    if (product.camomila) {
+      newCost += 60;
+    }
+    if (product.eucalipto) {
+      newCost += 70;
+    }
+    setRequisicao({
+      ...requisicao,
+      cost: newCost,
+    });
+  };
+
+  useEffect(() => {
+    handleCost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [servico, product]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
