@@ -48,6 +48,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  height: 70px;
   padding: 2px 0 0 0;
   border-bottom: 1px solid var(--black-color);
 }
