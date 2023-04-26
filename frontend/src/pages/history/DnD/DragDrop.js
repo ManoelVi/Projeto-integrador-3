@@ -80,56 +80,35 @@ function DragDrop(setTask) {
 
   const addItemToBoard = ({ id }, column) => {
     const status = column === 1 ? 1 : column === 2 ? 2 : column === 3 ? 3 : 4;
-    console.log(status);
     fetch(`http://localhost:8080/api/update/${id}/status`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        clientName: "Raquel Aparecida Teixeira",
-        clientStreet: "Rua vital rifarto",
-        clientEmail: "raquelteixeira507@gmail.com",
-        clientPhone: "11963298596",
-        clientCpf: "54131172801",
-        clientCep: "05893210",
-        clientNumber: "112",
-        clientDistrict: "São Paulo",
-        clientComplement: "",
-        clientState: "SP",
         status: status,
-        product: {
-          bergamota: false,
-          lavanda: false,
-          limao: false,
-          hortela: true,
-          capim_limao: false,
-          camomila: true,
-          eucalipto: true,
-          "capim-limao": true,
-        },
-        service: "Maquiagem",
       }),
     })
-      .then((response) => {
-        console.log("response", response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .then((response) => {
+      window.location.href = '/admin/history';
+      return response.json();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-    fetch(`http://localhost:8080/api/getAllRequests`, {
+    /* fetch(`http://localhost:8080/api/getAllRequests`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to get requests");
-        }
-      })
-      .then((data) => {
-        setRequests(data);
-      });
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to get requests");
+      }
+    })
+    .then((data) => {
+      setRequests(data);
+    }); */
   };
   return (
     <div className="history-cards">
