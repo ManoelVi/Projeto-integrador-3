@@ -30,6 +30,14 @@
   padding: 10px 5px;
   margin: 10px 5px 0 5px;
 }
+.Board{
+  width: 23%;
+  min-width: 260px;
+  min-height: 400px;
+  background-color: var(--white-color);
+  padding: 10px 5px;
+  margin: 10px 5px 0 5px;
+}
 .history-card h5 { 
   text-align: center;
   margin: 0 0 10px 0;
