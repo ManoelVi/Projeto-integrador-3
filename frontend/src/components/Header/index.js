@@ -5,12 +5,12 @@ import './index425px.css';
 import './index1024px.css';
 
 export default function Header() {
-  if(window.location.pathname.includes('admin') && !window.location.pathname.includes('register')){
-    const isLogged = localStorage.getItem('isLogged');
-    if(!isLogged){
-      window.location.href = '/login';
-    }
-  }
+//  if(window.location.pathname.includes('admin') && !window.location.pathname.includes('register')){
+  //  const isLogged = localStorage.getItem('isLogged');
+  // if(!isLogged){
+   //   window.location.href = '/login';
+   // }
+ // }
   return (
     <>
       <header id="header">
