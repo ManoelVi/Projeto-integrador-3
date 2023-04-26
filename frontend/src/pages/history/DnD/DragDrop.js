@@ -1,13 +1,7 @@
-import { Link } from "react-router-dom";
-import Footer from "../../../components/Footer";
-import Header from "../../../components/Header";
 import dayjs from "dayjs";
-import requestsMock from "../../../mocks/requestsPageMock";
 import "../index.css";
 import { useEffect, useState } from "react";
-import { DndProvider, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { useDrag } from "react-dnd";
+import { useDrop } from "react-dnd";
 import Picture from "./Picture";
 
 function DragDrop(setTask) {
@@ -46,7 +40,7 @@ function DragDrop(setTask) {
     return requestStatus;
   };
 
-  const [{ isOver: isOver1 }, drop1] = useDrop(() => ({
+  const [drop1] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 1),
     collect: (monitor) => ({
@@ -54,7 +48,7 @@ function DragDrop(setTask) {
     }),
   }));
 
-  const [{ isOver: isOver2 }, drop2] = useDrop(() => ({
+  const [drop2] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 2),
     collect: (monitor) => ({
@@ -62,7 +56,7 @@ function DragDrop(setTask) {
     }),
   }));
 
-  const [{ isOver: isOver3 }, drop3] = useDrop(() => ({
+  const [drop3] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 3),
     collect: (monitor) => ({
@@ -70,7 +64,7 @@ function DragDrop(setTask) {
     }),
   }));
 
-  const [{ isOver: isOver4 }, drop4] = useDrop(() => ({
+  const [drop4] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 4),
     collect: (monitor) => ({
@@ -94,21 +88,6 @@ function DragDrop(setTask) {
     .catch((error) => {
       console.log(error);
     });
-
-    /* fetch(`http://localhost:8080/api/getAllRequests`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Failed to get requests");
-      }
-    })
-    .then((data) => {
-      setRequests(data);
-    }); */
   };
   return (
     <div className="history-cards">

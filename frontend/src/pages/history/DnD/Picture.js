@@ -3,7 +3,7 @@ import { useDrag } from "react-dnd";
 import "./Picture.css";
 
 function Picture({ nome, data, service, status, id }) {
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [drag] = useDrag(() => ({
     type: "text",
     item: {
       status: status,
