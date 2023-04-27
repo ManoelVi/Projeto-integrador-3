@@ -47,7 +47,7 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/users")
+    @GetMapping("/allUsers")
     public List<AdminUser> login() {
         return adminRepository.findAll();
     }
@@ -63,7 +63,7 @@ public class AdminController {
         AdminUser user = optionalRequest.get();
 
         adminRepository.delete(user);
-        
+
         return ResponseEntity.ok(user);
     }
 }
