@@ -2,6 +2,9 @@ package lanzelotti.beauty.lanzelotti.beauty.java.lanzelotti.beauty.lanzelotti.be
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,5 +42,10 @@ public class AdminController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
         }
+    }
+
+    @GetMapping("/users")
+    public List<AdminUser> login() {
+        return adminRepository.findAll();
     }
 }
