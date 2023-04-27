@@ -40,7 +40,7 @@ function DragDrop(setTask) {
     return requestStatus;
   };
 
-  const [drop1] = useDrop(() => ({
+  const [{ isOver: isOver1 }, drop1] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 1),
     collect: (monitor) => ({
@@ -48,7 +48,7 @@ function DragDrop(setTask) {
     }),
   }));
 
-  const [drop2] = useDrop(() => ({
+  const [{ isOver: isOver2 }, drop2] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 2),
     collect: (monitor) => ({
@@ -56,7 +56,7 @@ function DragDrop(setTask) {
     }),
   }));
 
-  const [drop3] = useDrop(() => ({
+  const [{ isOver: isOver3 }, drop3] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 3),
     collect: (monitor) => ({
@@ -64,7 +64,7 @@ function DragDrop(setTask) {
     }),
   }));
 
-  const [drop4] = useDrop(() => ({
+  const [{ isOver: isOver4 }, drop4] = useDrop(() => ({
     accept: "text",
     drop: (item) => addItemToBoard(item, 4),
     collect: (monitor) => ({
@@ -81,13 +81,28 @@ function DragDrop(setTask) {
         status: status,
       }),
     })
-    .then((response) => {
-      window.location.href = '/admin/history';
-      return response.json();
+      .then((response) => {
+        window.location.href = "/admin/history";
+        return response.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    /* fetch(`http://localhost:8080/api/getAllRequests`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Failed to get requests");
+      }
+    })
+    .then((data) => {
+      setRequests(data);
+    }); */
   };
   return (
     <div className="history-cards">
