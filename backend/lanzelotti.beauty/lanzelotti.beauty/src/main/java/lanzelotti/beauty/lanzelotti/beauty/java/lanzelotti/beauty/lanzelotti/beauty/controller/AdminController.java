@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -52,18 +51,16 @@ public class AdminController {
         return adminRepository.findAll();
     }
 
-    @DeleteMapping("/deleteUser/{id}")
-    public ResponseEntity<AdminUser> delete(@PathVariable Long id) {
-        Optional<AdminUser> optionalRequest = adminRepository.findById(id);
+    @DeleteMapping("/deleteUser/{userName}")
+    public ResponseEntity<AdminUser> delete(@PathVariable String userName) {
+        AdminUser existingUser = adminRepository.findByUserName(userName);
 
-        if (optionalRequest.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        if(existingUser == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não existe");
         }
 
-        AdminUser user = optionalRequest.get();
+        adminRepository.deleteById(existingUser.getId());
 
-        adminRepository.delete(user);
-
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(existingUser);
     }
 }

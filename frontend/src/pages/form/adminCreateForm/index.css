@@ -19,3 +19,33 @@
   text-align: center;
   padding: 10px;
 }
+.users-list {
+  width: 70%;
+  background-color: var(--white-color);
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 1%;
+}
+.users-list h2 {
+  text-align: center;
+  margin: 10px 0 30px 0;
+}
+.user {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1.5px solid black;
+  border-radius: 20px;
+}
+.user p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+.user button {
+  border-color: transparent;
+  background-color: transparent;
+}

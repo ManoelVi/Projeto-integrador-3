@@ -23,7 +23,7 @@ export default function AdminFormCadastro() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:8080/admin/users`, {
+    fetch(`http://localhost:8080/admin/allUsers`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })
@@ -35,6 +35,7 @@ export default function AdminFormCadastro() {
         }
       })
       .then((data) => {
+        console.log(data);
         setUsers(data);
       })
       .catch((error) => {
@@ -42,8 +43,8 @@ export default function AdminFormCadastro() {
       });
   }, []);
 
-  const deleteUser = (id) => {
-    fetch(`http://localhost:8080/admin/deleteUser/${id}`, {
+  const deleteUser = (userName) => {
+    fetch(`http://localhost:8080/admin/deleteUser/${userName}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     }).then((response) => {
@@ -52,6 +53,7 @@ export default function AdminFormCadastro() {
         window.location.href = '/admin/register';
       } else {
         window.alert("Erro ao deletar o usuário");
+        console.log(response);
         window.location.href = '/admin/register';
       }
     }).catch((err) => {
@@ -122,10 +124,15 @@ export default function AdminFormCadastro() {
           </Form>
         </div>
         <div className="users-list">
+          <h2>Usuários Ativos</h2>
           {users.map((user) => (
             <div className="user">
-              <p className="user-name">{user.name}</p>
-              <button onClick={() => deleteUser(user.id)}></button>
+              <p className="user-name">{user.userName}</p>
+              <button onClick={() => deleteUser(user.userName)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                </svg>
+              </button>
             </div>
           ))}
         </div>
