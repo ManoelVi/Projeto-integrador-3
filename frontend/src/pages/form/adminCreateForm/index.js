@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -9,6 +9,7 @@ import Footer from "../../../components/Footer";
 export default function AdminFormCadastro() {
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(null);
+  const [users, setUsers] = useState([]);
   const [req, setReq] = useState({
     userName: "",
     password: "",
@@ -20,6 +21,44 @@ export default function AdminFormCadastro() {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/admin/users`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Failed to get requests");
+        }
+      })
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const deleteUser = (id) => {
+    fetch(`http://localhost:8080/admin/deleteUser/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    }).then((response) => {
+      if (response.ok) {
+        window.alert("Usuário deletado com sucesso");
+        window.location.href = '/admin/register';
+      } else {
+        window.alert("Erro ao deletar o usuário");
+        window.location.href = '/admin/register';
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     fetch(`http://localhost:8080/admin/create`, {
@@ -81,6 +120,14 @@ export default function AdminFormCadastro() {
               </Button>
             </div>
           </Form>
+        </div>
+        <div className="users-list">
+          {users.map((user) => (
+            <div className="user">
+              <p className="user-name">{user.name}</p>
+              <button onClick={() => deleteUser(user.id)}></button>
+            </div>
+          ))}
         </div>
       </main>
       <Footer />
