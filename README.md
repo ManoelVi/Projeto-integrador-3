@@ -42,6 +42,13 @@ Primeiro passo para conseguir rodar o frontEnd é dar um `cd frontend` no termin
 
 O segundo passo é dar um `npm start` no terminal e ele irá abrir a aplicação assim que termianr de rodar.
 
+# IMPORTANTE!
+
+## Para logar
+Entre em "sou administrador" e digite admin no userName e password digite 123
+
+### Você logou!
+
 ### Você conseguiu rodar o front-end!
 
 ## Back-end
@@ -54,7 +61,7 @@ Nossa back-end é Java Spring boot e utiliza do maven como ferramenta de gerenci
 
 O segundo passo é rodar o comando `mvn spring-boot:run` **certifique a versão do java na sua máquina e a versão que seu maven está utilizando, atualmente este projeto utiliza a versão 17**
 
-### Uma forma mais fácil
+### Uma forma mais fácil - se sua máquina ter uma versão diferente do jdk
 
 Se voçê possuir visual studio code na sua máquina, uma alternativa é instalar a extensão `Spring Boot Dashboard` e abrir o projeto na IDE, ao clicar sob a classe Application.java ele identificará automaticamente que é uma aplicação spring boot e disponibilizará um ícone de "desliga/liga" na barra lateral, ao clicar no ícone você verá sua aplicação disponível e só clicar no play e ele irá rodar automaticamente sua aplicação.
 ### Você conseguiu rodar o back-end!
