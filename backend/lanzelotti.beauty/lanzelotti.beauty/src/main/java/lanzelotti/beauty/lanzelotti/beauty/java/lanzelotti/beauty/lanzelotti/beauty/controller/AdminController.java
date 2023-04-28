@@ -29,9 +29,9 @@ public class AdminController {
     @PostMapping("create")
     @ResponseStatus(HttpStatus.CREATED)
     public AdminUser createRequest(@RequestBody AdminUser user){
-        AdminUser existingUser = adminRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+        AdminUser existingUser = adminRepository.findByUserName(user.getUserName());
         if(existingUser != null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário com as mesmas credenciais já existe");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe");
         }
     return adminRepository.save(user);
     }

@@ -72,7 +72,7 @@ export default function AdminFormCadastro() {
         setRedirect(true);
         return response.json();
       } else {
-        setError("Este usuário com essa senha já existe, tente novamente.");
+        setError("Este usuário já existe, tente novamente.");
         throw new Error("Failed to login as admin");
       }
     });
