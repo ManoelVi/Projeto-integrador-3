@@ -25,7 +25,7 @@ export default function LandingPage() {
             <h3>Sobre nós</h3>
             <p>Olá, meu nome é Giulia Lanzelotte e sou uma uma profissional de estética e cosmetologia formada pelo Centro Universitário Senac.</p>
             <p> Ofereço serviços de estética como limpeza de pele, drenagem linfática, massagem relaxanto e entre outros.</p>
-            <Link to='/meus-servicos' className='see-my-services'>Veja meus serviços</Link>
+            <Link to='/servicos' className='see-my-services'>Veja meus serviços</Link>
           </div>
         </div>
         <h1 className='steps-title'>Veja como é fácil fazer uma compra!</h1>
