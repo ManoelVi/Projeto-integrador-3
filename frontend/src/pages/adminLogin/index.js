@@ -27,7 +27,7 @@ export default function AdminForm() {
   const handleSubmit = (event) => {
     debugger;
     event.preventDefault();
-    if(req.userName === 'admin' && req.password === '123'){
+    if(req.userName === 'admin' && req.password === '123' ){
       localStorage.setItem('isLogged', true);
       setRedirect(true);
     } else {
@@ -78,6 +78,7 @@ export default function AdminForm() {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Control
+                id="password"
                 required
                 size="lg"
                 type="password"

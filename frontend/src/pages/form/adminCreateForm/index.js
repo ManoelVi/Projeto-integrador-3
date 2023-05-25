@@ -14,12 +14,20 @@ export default function AdminFormCadastro() {
     userName: "",
     password: "",
   });
+
+  const [reqconfirm, setReqConfirm] = useState();
+
   const handleInputChangeReq = (event) => {
     const { name, value } = event.target;
     setReq({
       ...req,
       [name]: value,
     });
+  };
+
+  const confirmPassword = (event) => {
+    const {value} = event.target;
+    setReqConfirm(value);
   };
 
   useEffect(() => {
@@ -63,18 +71,22 @@ export default function AdminFormCadastro() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if(req.password != reqconfirm){
+      setError("Confirmação de senha incorreta.");
+      return;
+    }
     fetch(`http://localhost:8080/admin/create`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req),
     }).then((response) => {
-      if (response.ok) {
-        setRedirect(true);
-        return response.json();
-      } else {
-        setError("Este usuário já existe, tente novamente.");
-        throw new Error("Failed to login as admin");
-      }
+        if (response.ok) {
+          setRedirect(true);
+          return response.json();
+        } else {
+          setError("Este usuário já existe, tente novamente.");
+          throw new Error("Failed to login as admin");
+        }
     });
   };
   if (redirect === true) {
@@ -100,19 +112,31 @@ export default function AdminFormCadastro() {
                 name="userName"
                 value={req.userName}
                 onChange={handleInputChangeReq}
-                placeholder="Nome de usuário"
+                placeholder="Nome de usuário:"
                 className="login-input"
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Control
                 required
+                id="password"
                 size="lg"
                 type="password"
                 name="password"
                 value={req.password}
                 onChange={handleInputChangeReq}
-                placeholder="********"
+                placeholder="Senha:"
+                className="login-input"
+              />
+              <Form.Control
+                required
+                id="confirm"
+                size="lg"
+                type="password"
+                name="confirm"
+                value={reqconfirm}
+                onChange={confirmPassword}
+                placeholder="Confirmar senha:"
                 className="login-input"
               />
             </Form.Group>
